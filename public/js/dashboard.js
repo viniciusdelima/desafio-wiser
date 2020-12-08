@@ -12,6 +12,7 @@ if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
 
 let URLListagem = '../../api/buscaArquivos.php';
 let URLDelete = '../../api/deletaArquivos.php';
+let URLUpload = '../../api/uploadArquivo.php';
 
 httpRequest.onreadystatechange = function() {
     if (httpRequest.readyState === XMLHttpRequest.DONE && httpRequest.status === 200) {
@@ -82,4 +83,22 @@ function deleteFolderOrFile(event) {
         request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
         request.send("type=" + data[0] + "&id=" + data[1]);
     }
+}
+
+async function uploadFile() {
+    let formData = new FormData();           
+    formData.append("file", fileUpload.files[0]);
+    await fetch(URLUpload, {
+      method: "POST", 
+      body: formData
+    })
+    .then(function(response) {
+        if (response.status === 201) {
+            alert('Arquivo enviado com sucesso!');
+            window.location.reload();
+        }
+        else {
+            alert('Não foi possível enviar o arquivo. Verifique se o mesmo já não existe no appbox.')
+        }
+    });
 }
