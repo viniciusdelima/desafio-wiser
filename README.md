@@ -8,6 +8,7 @@
 ### PHP 7.2
 ### JavaScript Puro
 
+
 ## Instalação
 
 Windows + R > Powershell > Navegue até a pasta da aplicação
