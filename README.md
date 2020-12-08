@@ -37,14 +37,16 @@ http://{SUA_URL}:{SUA_PORTA}/public/dashboard.php (Listagem dos arquivos) (Lista
 
 ## Design da Aplicação
 
-- api/ Conjuntos de arquivos responsáveis por responder para as requests do front
+- api/ Conjuntos de arquivos responsáveis por responder para as requests do front.
+
+- database/migrations/ Conjunto de arquivos responsável pela criação da tabela de usuários do sistema.
 
 - src/ Contendo os fontes das bibliotecas desenvolvidas para login de usuários e comunicação com a Api. Todos passíveis de teste unitário.
 
-- - src/Api Entidades responsáveis pela comunicação com a Api do Box.com
-- - src/Authenticator Entidades responsáveis por realizar a autenticação dos usuários no sistema
-- - src/User Entidades responsáveis por representar o usuário do sistema
+- - src/Api Entidades responsáveis pela comunicação com a Api do Box.com.
+- - src/Authenticator Entidades responsáveis por realizar a autenticação dos usuários no sistema.
+- - src/User Entidades responsáveis por representar o usuário do sistema.
 
-- public/ Conjunto de arquivos de front-end da aplicação
+- public/ Conjunto de arquivos de front-end da aplicação.
 
-- tests/ Testes unitários da aplicação
+- tests/ Testes unitários da aplicação.
