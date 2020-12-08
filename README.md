@@ -7,7 +7,7 @@
 ### PSR's 1, 4, e 12
 ### PHP 7.2
 
-Instalação
+## Instalação
 
 Windows + R > Powershell > Navegue até a pasta da aplicação
 
@@ -22,5 +22,7 @@ Executar o migration acessando no navegador "http://localhost:8000/database/migr
 Rotas disponíveis
 
 http://{SUA_URL}:{SUA_PORTA}/public/login.php (Login do usuário)
+
 http://{SUA_URL}:{SUA_PORTA}/public/register.php (Cadastro do usuário)
+
 http://{SUA_URL}:{SUA_PORTA}/public/dashboard.php (Listagem dos arquivos)
