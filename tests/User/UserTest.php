@@ -24,6 +24,33 @@ class UserTest extends TestCase
     }
 
     /**
+     * Testa o cadastro de um usuário no sistema.
+     */
+    public function testCadastraUsuarioComSucesso() : void
+    {
+        $user = new User();
+        $user->setLogin('teste3@teste.com');
+        $user->setPassword('123456');
+
+        $this->assertSame('teste3@teste.com', $user->getLogin());
+        $this->assertTrue($user->register() instanceof User);
+        $user->login();
+        $this->assertTrue($user->isLogged());
+
+        $user->setLogin('teste2@teste.com');
+        $user->setPassword('12345678');
+        $this->assertTrue($user->register() instanceof User);
+        $user->login();
+        $this->assertTrue($user->isLogged());
+
+        $user->setLogin('teste@teste.com');
+        $user->setPassword('123456');
+        $this->assertTrue($user->register() instanceof User);
+        $user->login();
+        $this->assertTrue($user->isLogged());
+    }
+
+    /**
      * Testa o login do usuário.
      */
     public function testUsuarioLogadoComSucesso() : void
@@ -38,21 +65,6 @@ class UserTest extends TestCase
 
         $user->setLogin('teste2@teste.com');
         $user->setPassword('12345678');
-        $user->login();
-        $this->assertTrue($user->isLogged());
-    }
-
-    /**
-     * Testa o cadastro de um usuário no sistema.
-     */
-    public function testCadastraUsuarioComSucesso() : void
-    {
-        $user = new User();
-        $user->setLogin('teste3@teste.com');
-        $user->setPassword('123456');
-
-        $this->assertSame('teste3@teste.com', $user->getLogin());
-        $this->assertTrue($user->register() instanceof User);
         $user->login();
         $this->assertTrue($user->isLogged());
     }

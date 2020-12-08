@@ -84,4 +84,16 @@ class ApiTest extends TestCase
             $this->assertTrue($api->deleteFolder($id));
         }
     }
+
+    /**
+     * Testa o upload de um arquivo para o box.com.
+     */
+    public function testFazUploadArquivo() : void
+    {
+        $api = new Api($_ENV['BOX_CLIENT_ID'], $_ENV['BOX_CLIENT_SECRET'], $_ENV['BOX_SUBJECT_ID']);
+        $api->authenticate();
+        $file = $_ENV['FILE_TEST_UPLOAD'];
+        $fileName = $_ENV['FILE_TEST_UPLOAD_NAME'];
+        $this->assertTrue($api->upload($file, $fileName));
+    }
 }

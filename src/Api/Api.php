@@ -32,6 +32,14 @@ class Api
     private $urlBase = 'https://api.box.com';
 
     /**
+     * Url base para upload.
+     * @name urlBaseUpload
+     * @access private
+     * @var string
+     */
+    private $urlBaseUpload = 'https://upload.box.com/api';
+
+    /**
      * Versão da Api.
      * @name version
      * @access private
@@ -280,6 +288,54 @@ class Api
         ]);
 
         if ($response->getStatusCode() === 204) {
+            $retorno = true;
+        }
+
+        return $retorno;
+    }
+
+     /**
+     * Faz o upload de um arquivo para o box.com.
+     * 
+     * @param string $file
+     * @param string $fileName
+     * @return bool
+     */
+    public function upload(string $file, string $fileName) : bool
+    {
+        $retorno = false;
+
+        if (!$this->isAuthenticated()) {
+            $this->authenticate();
+        }
+
+        /* Aqui usei curl puro devido ao tempo de desenvolvimento estourando
+         * e assim conseguindo pelo menos via testes unitários viabilizar todas as necessidades 
+         * do teste para a Api.
+         */
+
+        $endpoint = $this->urlBaseUpload . '/' . $this->version . '/files/content/';
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => 'https://upload.box.com/api/2.0/files/content',
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "POST",
+            CURLOPT_POSTFIELDS => array('attributes' => '{"name":"' . $fileName . '", "parent": {"id": "0"}}','file'=> new \CURLFILE($file)),
+            CURLOPT_HTTPHEADER => array(
+                "Authorization: Bearer " . $this->accessToken,
+            ),
+            CURLOPT_SSL_VERIFYHOST => 0,
+            CURLOPT_SSL_VERIFYPEER => 0
+        ));
+
+        $response = curl_exec($curl);
+        $info = curl_getinfo($curl);
+        curl_close($curl);
+
+        if ($info['http_code'] === 201) {
             $retorno = true;
         }
 
