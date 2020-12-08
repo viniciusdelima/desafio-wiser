@@ -1,0 +1,15 @@
+{
+    "require-dev": {
+        "phpunit/phpunit": "6.4"
+    },
+    "autoload": {
+        "psr-4": {
+            "DesafioWiser\\": "src/",
+            "DesafioWiser\\Test\\": "tests/"
+        }
+    },
+    "require": {
+        "vlucas/phpdotenv": "^5.2",
+        "guzzlehttp/guzzle": "7.0"
+    }
+}
