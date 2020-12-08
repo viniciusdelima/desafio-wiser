@@ -19,7 +19,13 @@ Instânciar o servidor interno do php com "php -S localhost:8000"
 
 Executar o migration acessando no navegador "http://localhost:8000/database/migrations/create_users_table.php"
 
-Rotas disponíveis
+## Testes Unitários
+
+Para os testes unitários, digite no terminal ".\vendor\bin\phpunit --colors=always" para suite de testes
+
+Para um relatório resumido ".\vendor\bin\phpunit --colors=always --testdox"
+
+### Rotas disponíveis
 
 http://{SUA_URL}:{SUA_PORTA}/public/login.php (Login do usuário)
 
